@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\User;
 class UserController extends Controller
 {
     /**
@@ -41,9 +41,10 @@ class UserController extends Controller
                 'gender' => $request->input('gender'),
                 'newsletter' => $request->input('newsletter'),
                 'mood' => $request->input('mood'),
+
             ],
         ];
-
+        User::create($data['user']);
         return view('user.result', $data);
 
     }

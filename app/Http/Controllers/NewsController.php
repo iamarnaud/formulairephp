@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\News;
 class NewsController extends Controller
 {
     /**
@@ -34,7 +34,14 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data =[
+            'news' => [
+                'title' => $request->input('title'),
+                'content' => $request->input('content'),
+            ]
+        ];
+        News::create($data['news']);
+        return view('news.result', $data);
     }
 
     /**
